@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import connectDb from "./config/db.js";
 import authRouter from "./routers/authRouter.js";
+import documentRouter from "./routers/documentRouter.js";
 
 dotenv.config();
 
@@ -23,6 +24,8 @@ app.get("/health", (_req: Request, res: Response) => {
 });
 
 app.use("/auth", authRouter);
+app.use("/documents", documentRouter);
+
 
 app.use((_req: Request, res: Response) => {
   res.status(404).json({ success: false, message: "Route not found." });
